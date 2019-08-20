@@ -1,0 +1,6 @@
+# cmake_minimum_required(VERSION <specify CMake version here>)
+project(05_AP_TA)
+
+set(CMAKE_CXX_STANDARD 98)
+
+add_executable(05_AP_TA main.cpp)
