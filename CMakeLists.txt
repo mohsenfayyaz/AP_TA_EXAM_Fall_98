@@ -3,4 +3,4 @@ project(05_AP_TA)
 
 set(CMAKE_CXX_STANDARD 98)
 
-add_executable(05_AP_TA main.cpp)
+add_executable(05_AP_TA main.cpp Map.cpp Map.h Simulator.cpp Simulator.h)
