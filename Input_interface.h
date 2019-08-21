@@ -13,8 +13,8 @@
 
 #include <iostream>
 #include <vector>
-#include "Kid.h"
-#include "Kid_angry.h"
+#include "Kid/Kid.h"
+#include "Kid/Kid_angry.h"
 
 class Input_interface {
 public:
