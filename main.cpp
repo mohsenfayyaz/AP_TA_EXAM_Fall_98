@@ -1,16 +1,17 @@
 #include <iostream>
 #include <cstdlib>
 #include "Map.h"
+#include "Simulator.h"
 
 #define MAP_FILE_ADDRESS "../map.dat"
 
 int main(int argc, char** argv) {
-    for (int i = 1; i < argc; ++i) {
-        int arg = atoi(argv[i]);
-        std::cout << arg << "\n";
-    }
+    int time_step = atoi(argv[1]);
+    int total_time = atoi(argv[2]);
+    std::vector<Kid> kids;
+    //Simulator my_simulator(MAP_FILE_ADDRESS, time_step, total_time, kids);
 
-    Map my_map(MAP_FILE_ADDRESS);
+
 
     return 0;
 }
