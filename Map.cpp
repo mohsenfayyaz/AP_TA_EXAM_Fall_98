@@ -19,4 +19,40 @@ Map::Map(const char *file_address) {
     }else{
         std::cerr << "Unable to open file";
     }
+    std::reverse(map_data.begin(), map_data.end());
+}
+
+Collision_type Map::does_collide_to_walls(double posx, double posy, int radius) {
+    Collision_type collision_type = no_collison;
+    if(is_point_in_walls(posx + radius, posy)){
+        collision_type = right;
+    }
+    if(is_point_in_walls(posx + radius, posy + radius)){
+        collision_type = right_top;
+    }
+    if(is_point_in_walls(posx + radius, posy - radius)){
+        collision_type = right_bottom;
+    }
+    if(is_point_in_walls(posx, posy - radius)){
+        collision_type = top;
+    }
+    if(is_point_in_walls(posx, posy + radius)){
+        collision_type = bottom;
+    }
+    if(is_point_in_walls(posx - radius, posy)){
+        collision_type = left;
+    }
+    if(is_point_in_walls(posx - radius, posy + radius)){
+        collision_type = left_top;
+    }
+    if(is_point_in_walls(posx - radius, posy - radius)){
+        collision_type = left_bottom;
+    }
+
+    return collision_type;
+}
+
+bool Map::is_point_in_walls(double posx, double posy) {
+    //std::cerr << posx << ":" << posy << std::endl;
+    return (map_data[int(posy)][int(posx)] == WALL_CHAR);
 }

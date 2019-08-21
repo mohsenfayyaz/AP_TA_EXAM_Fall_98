@@ -6,25 +6,27 @@
 #define INC_05_AP_TA_KID_H
 
 #include "Kid_type.h"
+#include "Rigid_body.h"
 
-class Kid {
+class Kid : public Rigid_body {
 protected:
     int id;
     Kid_type type;
-    bool fragile;
-    double posx, posy, vx, vy;
-    int radius, anger, charisma, courage;
+    int anger, charisma, courage;
     Kid(int _id, Kid_type _type, bool _fragile, double _posx, double _posy, double _vx, double _vy, int _radius, int _anger, int _charisma, int _courage);
 
 public:
     virtual void hit(Kid* other_kid){};
 
-    int get_id(){ return id; }
+    int get_id() const { return id; }
     Kid_type get_type(){ return type; }
-    int get_radius(){ return radius; }
     int get_anger(){ return anger; }
     int get_charisma(){ return charisma; }
     int get_courage(){ return courage; }
+
+    static bool compare_kid_id(const Kid &lhs, const Kid &rhs){
+        return (lhs.get_id() < rhs.get_id());
+    }
 
 };
 
