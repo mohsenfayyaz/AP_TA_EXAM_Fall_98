@@ -1,5 +1,5 @@
 #include <cstdlib>
-#include "Simulator.h"
+#include "Simulator/Simulator.h"
 #include "Input_interface.h"
 
 #define MAP_FILE_ADDRESS "../map.dat"

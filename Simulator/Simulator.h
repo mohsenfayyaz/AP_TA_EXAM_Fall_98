@@ -6,7 +6,7 @@
 #define INC_05_AP_TA_SIMULATOR_H
 
 #include "vector"
-#include "Kid/Kid.h"
+#include "../Kid/Kid.h"
 #include "Map.h"
 
 class Simulator {
