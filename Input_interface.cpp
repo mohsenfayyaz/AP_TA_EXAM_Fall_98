@@ -12,15 +12,11 @@ std::vector<Kid> Input_interface::read_kids_from_input() {
     std::string fragile_text, type_text, comma;
     std::vector<Kid> kids;
 
-    std::cin >> number_of_kids;
-    for (int i = 0; i < number_of_kids; ++i){
-        std::cin >> id >> comma >> type_text >> fragile_text >> posx >> comma >> posy >> comma >> vx >> comma >>
-            vy >> comma >> radius >> comma >> anger >> comma >> charisma >> comma >> courage;
+    //std::cin >> number_of_kids;
+    while(std::cin >> id >> comma >> type_text >> fragile_text >> posx >> comma >> posy >> comma >> vx >> comma >>
+                   vy >> comma >> radius >> comma >> anger >> comma >> charisma >> comma >> courage){
         type_text = type_text.substr(0, type_text.size()-1);
         fragile_text = fragile_text.substr(0, fragile_text.size()-1);
-
-//        std::cerr << id << comma << type_text << fragile_text << posx << comma << vx << comma << vy << comma
-//            << radius << comma << anger << comma << charisma << comma << courage << std::endl;
         fragile = (fragile_text == TRUE);
         if(type_text == ANGRY){
             type = Angry;

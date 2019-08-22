@@ -8,6 +8,10 @@
 #include "Kid_type.h"
 #include "Rigid_body.h"
 
+#define ANGRY "Angry"
+#define PEACEFUL "Peaceful"
+#define COWARD "Coward"
+
 class Kid : public Rigid_body {
 protected:
     int id;
@@ -27,6 +31,7 @@ public:
     static bool compare_kid_id(const Kid &lhs, const Kid &rhs){
         return (lhs.get_id() < rhs.get_id());
     }
+    void print_kid_condition();
 
 };
 

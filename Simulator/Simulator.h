@@ -9,6 +9,8 @@
 #include "../Kid/Kid.h"
 #include "Map.h"
 
+#define SHARP_SIGN '#'
+
 class Simulator {
 private:
     Map* simulation_map;
@@ -16,6 +18,7 @@ private:
     int total_time;
     std::vector<Kid>* kids;
     int number_of_steps;
+    int current_step;
     bool compare_kid_id();
     int last_id;
 public:
@@ -26,6 +29,8 @@ public:
     void simulate_walls_collision();
 
     void simulate_move_kids();
+
+    void print_kids_condition();
 };
 
 
