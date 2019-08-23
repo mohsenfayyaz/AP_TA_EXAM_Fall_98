@@ -37,3 +37,8 @@ void Kid::make_a_copy() {
     old_kid_copy = new Kid(*this);
 
 }
+
+void Kid::check_death(){
+    if(anger >= DEATH_ANGER_LIMIT || radius <= DEATH_RADIUS_LIMIT)
+        this->die();
+}

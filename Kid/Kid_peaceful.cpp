@@ -13,6 +13,7 @@ void Kid_peaceful::hit(Kid *old_other_kid, Kid *real_other_kid) {
         this->unite(old_other_kid, real_other_kid);
 
     check_peaceful_kid_properties_conditions();
+    check_death();
 }
 
 void Kid_peaceful::negotiate(Kid* other_kid) {

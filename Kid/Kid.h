@@ -12,6 +12,9 @@
 #define PEACEFUL "Peaceful"
 #define COWARD "Coward"
 
+#define DEATH_ANGER_LIMIT 100
+#define DEATH_RADIUS_LIMIT 0
+
 class Kid : public Rigid_body {
 protected:
     int id;
@@ -20,8 +23,8 @@ protected:
     Kid(int _id, Kid_type _type, bool _fragile, double _posx, double _posy, double _vx, double _vy, double _radius, int _anger, int _charisma, int _courage);
     bool dead;
     Kid* old_kid_copy;
-
     void die(){ dead = true; }
+    void check_death();
 public:
     virtual void hit(Kid *other_kid, Kid *pKid) {};
     int get_id() const { return id; }
@@ -35,7 +38,6 @@ public:
     void print_kid_condition();
     void make_a_copy();
     bool is_dead(){ return dead; };
-
 };
 
 

@@ -12,6 +12,7 @@ void Kid_coward::hit(Kid *old_other_kid, Kid *real_other_kid) {
         this->die();
 
     check_coward_kid_properties_conditions();
+    check_death();
 }
 
 void Kid_coward::check_coward_kid_properties_conditions() {

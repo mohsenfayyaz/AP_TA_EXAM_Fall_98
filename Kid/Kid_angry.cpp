@@ -13,6 +13,7 @@ void Kid_angry::hit(Kid *old_other_kid, Kid *real_other_kid) {
         this->negotiate(old_other_kid);
 
     check_angry_kid_properties_conditions();
+    check_death();
 }
 
 void Kid_angry::fight(Kid* other_kid){
