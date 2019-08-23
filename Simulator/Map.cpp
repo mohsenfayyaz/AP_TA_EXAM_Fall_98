@@ -61,13 +61,13 @@ bool Map::is_point_in_walls(double posx, double posy) {
         return (map_data[int(posy)][int(posx)] == WALL_CHAR);
 }
 
-void Map::draw_map_with_kids(std::vector<Kid>* kids){
+void Map::draw_map_with_kids(std::vector<Kid*>* kids){
     std::vector<std::string> new_map_data(map_data);
     for (int i = 0; i < kids->size(); ++i) {
-        Rigid_body current_body = (*kids)[i];
-        double posx = current_body.get_posx();
-        double posy = current_body.get_posy();
-        double radius = current_body.get_radius();
+        Rigid_body* current_body = (*kids)[i];
+        double posx = current_body->get_posx();
+        double posy = current_body->get_posy();
+        double radius = current_body->get_radius();
         for (int j = 0; j < radius; ++j) {
             new_map_data[int(posy)][int(posx)] = BODY_CHAR;
             new_map_data[int(posy)+j][int(posx)] = BODY_CHAR;
@@ -92,5 +92,4 @@ void Map::print_map(std::vector<std::string>& map){
         }
         std::cout << std::endl;
     }
-    std::cout << std::endl << "-----------------" << std::endl;
 }

@@ -16,7 +16,7 @@ private:
     Map* simulation_map;
     int time_step;
     int total_time;
-    std::vector<Kid>* kids;
+    std::vector<Kid*>* kids;
     int number_of_steps;
     int current_step;
     bool compare_kid_id();
@@ -25,10 +25,13 @@ private:
     void simulate_move_kids();
     void simulate_walls_collision();
     void print_kids_condition();
+    std::vector<Kid *> copy_kids();
+    void delete_copy_kids(std::vector<Kid *> &copy_kids);
 public:
-    Simulator(const char* map_address, int time_step, int total_time, std::vector<Kid>* kids);
+    Simulator(const char* map_address, int time_step, int total_time, std::vector<Kid*>* kids);
     void run();
     void run_once();
+
 };
 
 

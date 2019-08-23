@@ -18,7 +18,7 @@
 
 class Input_interface {
 public:
-    static std::vector<Kid> read_kids_from_input();
+    static std::vector<Kid*>* read_kids_from_input();
 };
 
 

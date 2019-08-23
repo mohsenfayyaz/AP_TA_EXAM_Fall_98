@@ -28,8 +28,8 @@ public:
     int get_charisma(){ return charisma; }
     int get_courage(){ return courage; }
 
-    static bool compare_kid_id(const Kid &lhs, const Kid &rhs){
-        return (lhs.get_id() < rhs.get_id());
+    static bool compare_kid_id(const Kid *lhs, const Kid *rhs){
+        return (lhs->get_id() < rhs->get_id());
     }
     void print_kid_condition();
 
