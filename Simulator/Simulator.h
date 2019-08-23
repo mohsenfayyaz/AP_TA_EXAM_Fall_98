@@ -27,11 +27,11 @@ private:
     void print_kids_condition();
     std::vector<Kid *> copy_kids();
     void delete_copy_kids(std::vector<Kid *> &copy_kids);
+    void sweep_dead_kids();
 public:
     Simulator(const char* map_address, int time_step, int total_time, std::vector<Kid*>* kids);
     void run();
     void run_once();
-
 };
 
 

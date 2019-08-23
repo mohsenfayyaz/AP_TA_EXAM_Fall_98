@@ -11,6 +11,7 @@ Kid::Kid(int _id, Kid_type _type, bool _fragile, double _posx, double _posy, dou
     anger = _anger;
     charisma = _charisma;
     courage = _courage;
+    dead = false;
 }
 
 void Kid::print_kid_condition() {

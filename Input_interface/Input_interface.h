@@ -15,6 +15,8 @@
 #include <vector>
 #include "../Kid/Kid.h"
 #include "../Kid/Kid_angry.h"
+#include "../Kid/Kid_peaceful.h"
+#include "../Kid/Kid_coward.h"
 
 class Input_interface {
 public:

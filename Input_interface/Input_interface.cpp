@@ -18,12 +18,19 @@ std::vector<Kid*>* Input_interface::read_kids_from_input() {
         type_text = type_text.substr(0, type_text.size()-1);
         fragile_text = fragile_text.substr(0, fragile_text.size()-1);
         fragile = (fragile_text == TRUE);
+
         if(type_text == ANGRY){
             type = Angry;
             Kid_angry* new_kid = new Kid_angry(id, type, fragile, posx, posy, vx, vy, radius, anger, charisma, courage);
             kids->push_back(new_kid);
-        }else{
-
+        }else if(type_text == PEACEFUL){
+            type = Peaceful;
+            Kid_peaceful* new_kid = new Kid_peaceful(id, type, fragile, posx, posy, vx, vy, radius, anger, charisma, courage);
+            kids->push_back(new_kid);
+        }else if(type_text == COWARD){
+            type = Coward;
+            Kid_coward* new_kid = new Kid_coward(id, type, fragile, posx, posy, vx, vy, radius, anger, charisma, courage);
+            kids->push_back(new_kid);
         }
     }
     return kids;

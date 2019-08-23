@@ -34,6 +34,7 @@ void Simulator::run_once() {
 
     simulate_walls_collision();
     simulate_kids_collision();
+    sweep_dead_kids();
     simulate_move_kids();
 }
 
@@ -96,4 +97,15 @@ void Simulator::delete_copy_kids(std::vector<Kid*>& copy_kids) {
         delete(copy_kids[i]);
     }
     copy_kids.clear();
+}
+
+void Simulator::sweep_dead_kids() {
+    for (int i = 0; i < kids->size(); ++i) {
+        Kid* kid = (*kids)[i];
+        if(kid->is_dead()){
+            std::cout << kid->get_id() << " died :(";
+            delete(kid);
+            kids->erase(kids->begin() + i);
+        }
+    }
 }
