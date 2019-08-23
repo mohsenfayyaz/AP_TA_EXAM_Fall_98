@@ -21,16 +21,14 @@ private:
     int current_step;
     bool compare_kid_id();
     int last_id;
+    void simulate_kids_collision();
+    void simulate_move_kids();
+    void simulate_walls_collision();
+    void print_kids_condition();
 public:
     Simulator(const char* map_address, int time_step, int total_time, std::vector<Kid>* kids);
     void run();
     void run_once();
-
-    void simulate_walls_collision();
-
-    void simulate_move_kids();
-
-    void print_kids_condition();
 };
 
 

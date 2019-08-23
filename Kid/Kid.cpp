@@ -4,7 +4,7 @@
 
 #include "Kid.h"
 
-Kid::Kid(int _id, Kid_type _type, bool _fragile, double _posx, double _posy, double _vx, double _vy, int _radius, int _anger, int _charisma, int _courage)
+Kid::Kid(int _id, Kid_type _type, bool _fragile, double _posx, double _posy, double _vx, double _vy, double _radius, int _anger, int _charisma, int _courage)
     :Rigid_body(_posx, _posy, _vx, _vy, _radius, _fragile){
     id = _id;
     type = _type;

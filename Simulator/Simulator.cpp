@@ -29,9 +29,9 @@ void Simulator::run_once() {
     print_kids_condition();
     simulation_map->draw_map_with_kids(kids);
 
-
-    simulate_move_kids();
     simulate_walls_collision();
+    simulate_kids_collision();
+    simulate_move_kids();
 }
 
 void Simulator::simulate_walls_collision() {
@@ -39,7 +39,7 @@ void Simulator::simulate_walls_collision() {
         Kid* kid = &((*kids)[i]);
         double next_posx = kid->get_next_posx(time_step);
         double next_posy = kid->get_next_posy(time_step);
-        int radius = kid->get_radius();
+        double radius = kid->get_radius();
         Collision_type kid_collision_type = simulation_map->does_collide_to_walls(next_posx, next_posy, radius);
         kid->collide_with_wall(kid_collision_type);
     }
@@ -57,4 +57,21 @@ void Simulator::print_kids_condition() {
         Kid* kid = &((*kids)[i]);
         kid->print_kid_condition();
     }
+}
+
+void Simulator::simulate_kids_collision() {
+    std::vector<Kid>* old_kids(kids);
+    for (int i = 0; i < kids->size(); ++i) {
+        Kid* kid = &((*kids)[i]);
+        for (int j = 0; j < kids->size(); ++j){
+            Kid* old_other_kid = &((*old_kids)[j]);
+            if(kid != old_other_kid) {
+                if(kid->does_collide_with(old_other_kid)){
+                    std::cout << kid->get_id() << " hit " << old_other_kid->get_id() << std::endl;
+                    kid->hit(old_other_kid);
+                }
+            }
+        }
+    }
+    delete(old_kids);
 }

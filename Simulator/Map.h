@@ -28,7 +28,7 @@ private:
 public:
     explicit Map(const char *file_address);
 
-    Collision_type does_collide_to_walls(double posx, double posy, int radius);
+    Collision_type does_collide_to_walls(double posx, double posy, double radius);
     bool is_point_in_walls(double posx, double posy);
     void draw_map_with_kids(std::vector<Kid> *kids);
 

@@ -17,7 +17,7 @@ protected:
     int id;
     Kid_type type;
     int anger, charisma, courage;
-    Kid(int _id, Kid_type _type, bool _fragile, double _posx, double _posy, double _vx, double _vy, int _radius, int _anger, int _charisma, int _courage);
+    Kid(int _id, Kid_type _type, bool _fragile, double _posx, double _posy, double _vx, double _vy, double _radius, int _anger, int _charisma, int _courage);
 
 public:
     virtual void hit(Kid* other_kid){};

@@ -12,11 +12,11 @@
 class Rigid_body {
 protected:
     double posx, posy, vx, vy;
-    int radius;
+    double radius;
     bool fragile;
 public:
-    Rigid_body(double posx, double posy, double vx, double vy, int radius, bool fragile);
-    int get_radius(){ return radius; }
+    Rigid_body(double posx, double posy, double vx, double vy, double radius, bool fragile);
+    double get_radius(){ return radius; }
     double get_posx(){ return posx; }
     double get_posy(){ return posy; }
     double get_next_posx(int time_step){ return posx + vx * time_step; }
@@ -24,6 +24,7 @@ public:
     void move(int time_step);
 
     void collide_with_wall(Collision_type kid_collision_type);
+    bool does_collide_with(Rigid_body* other_body);
 };
 
 

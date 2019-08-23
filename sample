@@ -1,3 +1,4 @@
 #id, type, fragile, posX, posY, vX, vY, radius, anger, charisma, courage
-1, Angry, false, 6, 6, 0.9, 0.1, 1, 21, 51, 31
-2, Angry, false, 5, 5, 2, 0, 1, 21, 51, 31
+1, Angry, false, 4, 5, 0.6, 0.1, 1, 21, 51, 31
+2, Angry, false, 6, 5, -0.5, 0, 1, 21, 51, 31
+CTRL + D

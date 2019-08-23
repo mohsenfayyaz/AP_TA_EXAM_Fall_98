@@ -20,7 +20,7 @@ Map::Map(const char *file_address) {
     std::reverse(map_data.begin(), map_data.end());
 }
 
-Collision_type Map::does_collide_to_walls(double posx, double posy, int radius) {
+Collision_type Map::does_collide_to_walls(double posx, double posy, double radius) {
     Collision_type collision_type = no_collison;
     radius += COLLISION_MARGIN;
     if(is_point_in_walls(posx + radius, posy + radius) )
@@ -67,7 +67,7 @@ void Map::draw_map_with_kids(std::vector<Kid>* kids){
         Rigid_body current_body = (*kids)[i];
         double posx = current_body.get_posx();
         double posy = current_body.get_posy();
-        int radius = current_body.get_radius();
+        double radius = current_body.get_radius();
         for (int j = 0; j < radius; ++j) {
             new_map_data[int(posy)][int(posx)] = BODY_CHAR;
             new_map_data[int(posy)+j][int(posx)] = BODY_CHAR;
