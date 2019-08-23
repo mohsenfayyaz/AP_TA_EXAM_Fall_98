@@ -11,8 +11,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <algorithm>
-#include "Collision_type.h"
-#include "../Kid/Rigid_body.h"
+#include "../Simulator/Collision_type.h"
+#include "../Rigid_body/Rigid_body.h"
 #include "../Kid/Kid.h"
 
 #define WALL_CHAR 'b'

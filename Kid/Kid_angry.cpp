@@ -4,13 +4,13 @@
 
 #include "Kid_angry.h"
 
-void Kid_angry::hit(Kid* other_kid){
-    this->change_speed_by_momentum(other_kid);
+void Kid_angry::hit(Kid *old_other_kid, Kid *real_other_kid) {
+    this->change_speed_by_momentum(old_other_kid);
 
-    if(other_kid->get_anger() > ANGRY_CONDITION_1_ANGER_LIMIT)
-        this->fight(other_kid);
-    else if(other_kid->get_charisma() > ANGRY_CONDITION_2_CHARISMA_LIMIT && other_kid->get_courage() > ANGRY_CONDITION_2_COURAGE_LIMIT)
-        this->negotiate(other_kid);
+    if(old_other_kid->get_anger() > ANGRY_CONDITION_1_ANGER_LIMIT)
+        this->fight(old_other_kid);
+    else if(old_other_kid->get_charisma() > ANGRY_CONDITION_2_CHARISMA_LIMIT && old_other_kid->get_courage() > ANGRY_CONDITION_2_COURAGE_LIMIT)
+        this->negotiate(old_other_kid);
 }
 
 void Kid_angry::fight(Kid* other_kid){

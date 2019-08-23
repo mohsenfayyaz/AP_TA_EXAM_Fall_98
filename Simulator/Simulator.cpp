@@ -72,7 +72,7 @@ void Simulator::simulate_kids_collision() {
             if(kid->get_id() != old_other_kid->get_id()) {
                 if(kid->does_collide_with_other_body(old_other_kid)){
                     std::cout << kid->get_id() << " hit " << old_other_kid->get_id() << std::endl;
-                    kid->hit(old_other_kid);
+                    kid->hit(old_other_kid, (*kids)[j]);
                 }
             }
         }

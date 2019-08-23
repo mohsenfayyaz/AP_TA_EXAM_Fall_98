@@ -27,3 +27,12 @@ void Kid::print_kid_condition() {
     std::cout << id << ", " << type_text << ", posx: " << posx << ", posY: " << posy << ", vx: " << vx << ", vY: " << vy << ", Radius: " << radius << ", " << anger
               << ", " << charisma << ", " << courage << std::endl;
 }
+
+void Kid::make_a_copy() {
+    try {
+        delete(old_kid_copy);
+    }catch (_exception& e){}
+
+    old_kid_copy = new Kid(*this);
+
+}

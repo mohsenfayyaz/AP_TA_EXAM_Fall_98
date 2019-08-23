@@ -7,7 +7,7 @@
 
 #include "vector"
 #include "../Kid/Kid.h"
-#include "Map.h"
+#include "../Map/Map.h"
 
 #define SHARP_SIGN '#'
 

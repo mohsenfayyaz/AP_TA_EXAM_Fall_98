@@ -23,7 +23,7 @@ public:
     Kid_angry(int id, Kid_type type, bool fragile, double posx, double posy, double vx, double vy, double radius,
               int anger, int charisma, int courage) : Kid(id, type, fragile, posx, posy, vx, vy, radius, anger, charisma, courage) {}
 
-    void hit(Kid* other_kid);
+    void hit(Kid *old_other_kid, Kid *real_other_kid);
 };
 
 

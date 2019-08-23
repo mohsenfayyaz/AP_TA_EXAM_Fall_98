@@ -27,6 +27,9 @@ public:
     double get_next_posy(int time_step){ return posy + vy * time_step; }
     void move(int time_step);
 
+    void set_vx(double _vx){ vx = _vx; }
+    void set_vy(double _vy){ vy = _vy; }
+
     void collide_with_wall(Collision_type kid_collision_type);
     bool does_collide_with_other_body(Rigid_body* other_body);
 
