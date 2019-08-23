@@ -11,6 +11,8 @@ void Kid_angry::hit(Kid *old_other_kid, Kid *real_other_kid) {
         this->fight(old_other_kid);
     else if(old_other_kid->get_charisma() > ANGRY_CONDITION_2_CHARISMA_LIMIT && old_other_kid->get_courage() > ANGRY_CONDITION_2_COURAGE_LIMIT)
         this->negotiate(old_other_kid);
+
+    check_angry_kid_properties_conditions();
 }
 
 void Kid_angry::fight(Kid* other_kid){
@@ -22,4 +24,12 @@ void Kid_angry::fight(Kid* other_kid){
 
 void Kid_angry::negotiate(Kid* other_kid) {
     radius += (1-(other_kid->get_courage() + other_kid->get_charisma() )/200) * 0.8 * radius;
+}
+
+void Kid_angry::check_angry_kid_properties_conditions() {
+    if(anger < ANGRY_KID_ANGER_LIMIT)
+        anger = ANGRY_KID_ANGER_LIMIT;
+    charisma = ANGRY_KID_CHARISMA_LIMIT;
+    if(courage < ANGRY_KID_COURAGE_LIMIT)
+        courage = ANGRY_KID_COURAGE_LIMIT;
 }

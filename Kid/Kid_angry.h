@@ -15,10 +15,15 @@
 #define ANGRY_CONDITION_2_COURAGE_LIMIT 30
 #define ANGRY_CONDITION_2_CHARISMA_LIMIT 50
 
+#define ANGRY_KID_ANGER_LIMIT 70
+#define ANGRY_KID_CHARISMA_LIMIT 20
+#define ANGRY_KID_COURAGE_LIMIT 70
+
 class Kid_angry : public Kid {
 private:
     void fight(Kid *other_kid);
     void negotiate(Kid* other_kid);
+    void check_angry_kid_properties_conditions();
 
 public:
     Kid_angry(int id, Kid_type type, bool fragile, double posx, double posy, double vx, double vy, double radius,
