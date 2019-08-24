@@ -24,7 +24,7 @@ private:
     void fight(Kid *other_kid);
     void negotiate(Kid* other_kid);
     void check_angry_kid_properties_conditions();
-    void check_angry_kid_special_behaviors(Kid *old_other_kid);
+    bool check_angry_kid_special_behaviors(Kid *old_other_kid);
 
 public:
     Kid_angry(int id, Kid_type type, bool fragile, double posx, double posy, double vx, double vy, double radius,

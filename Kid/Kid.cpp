@@ -35,11 +35,11 @@ void Kid::check_death_conditions(){
 }
 
 bool Kid::does_break(Kid* old_other_kid) {
-    if(radius + old_other_kid->get_radius() > BREAKING_RADIUS_LIMIT){
+    if(this->is_fragile() && radius + old_other_kid->get_radius() > BREAKING_RADIUS_LIMIT){
         if(radius < BREAKING_DEATH_RADIUS_LIMIT){
-            return true;
-        }else{
             this->die();
+        }else{
+            return true;
         }
     }
     return false;

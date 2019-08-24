@@ -34,6 +34,7 @@ public:
     void collide_with_wall(Collision_type kid_collision_type);
     bool does_collide_with_other_body(Rigid_body* other_body);
 
+    bool is_fragile() { return fragile; }
 
 };
 

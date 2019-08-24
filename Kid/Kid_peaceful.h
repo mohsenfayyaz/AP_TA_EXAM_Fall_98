@@ -24,7 +24,7 @@ private:
     void negotiate(Kid *other_kid);
     void unite(Kid *old_other_kid, Kid *real_other_kid);
     void check_peaceful_kid_properties_conditions();
-    void check_peaceful_kid_special_behaviors(Kid *old_other_kid, Kid *real_other_kid);
+    bool check_peaceful_kid_special_behaviors(Kid *old_other_kid, Kid *real_other_kid);
 
 public:
     Kid_peaceful(int id, Kid_type type, bool fragile, double posx, double posy, double vx, double vy, double radius,

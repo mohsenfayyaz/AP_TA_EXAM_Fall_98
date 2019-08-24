@@ -10,6 +10,7 @@
 #include "../Map/Map.h"
 
 #define SHARP_SIGN '#'
+#define DEATH_COUT ", KIA"
 
 #define BREAK_RADIUS_RATIO 1/3
 #define BREAK_SPEED_RATIO 1/6

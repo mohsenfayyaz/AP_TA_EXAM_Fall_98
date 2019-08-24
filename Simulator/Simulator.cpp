@@ -19,7 +19,7 @@ Simulator::Simulator(const char *map_address, int _time_step, int _total_time, s
 }
 
 void Simulator::run() {
-    for (int i = 0; i < number_of_steps; ++i) {
+    for (int i = 0; i <= number_of_steps; ++i) {
         //std::cout << std::endl << "-----------------" << std::endl;
         std::cout << SHARP_SIGN << current_step << std::endl;
         run_once();
@@ -90,7 +90,7 @@ void Simulator::sweep_dead_kids() {
     for (int i = 0; i < kids->size(); ++i) {
         Kid* kid = (*kids)[i];
         if(kid->is_dead()){
-            std::cout << kid->get_id() << " died :(";
+            std::cout << kid->get_id() << DEATH_COUT << std::endl;
             delete(kid);
             kids->erase(kids->begin() + i);
         }
@@ -121,7 +121,7 @@ void Simulator::simulate_kids_hit_each_other(std::vector<std::vector<Kid *> > co
         Kid* kid = (*kids)[i];
         for (int j = 0; j < collisions[i].size(); ++j) {
             Kid* old_other_kid = find_old_kid( old_kids, collisions[i][j]->get_id() );
-            std::cout << kid->get_id() << " hit " << old_other_kid->get_id() << std::endl;
+            //std::cout << kid->get_id() << " hit " << old_other_kid->get_id() << std::endl;
             kid->hit(old_other_kid, collisions[i][j]);
         }
     }
