@@ -6,14 +6,9 @@
 
 void Kid_peaceful::hit(Kid *old_other_kid, Kid *real_other_kid) {
     this->change_speed_by_momentum(old_other_kid);
-
-    if(old_other_kid->get_anger() > PEACEFUL_CONDITION_1_ANGER_LIMIT && old_other_kid->get_courage() > PEACEFUL_CONDITION_1_COURAGE_LIMIT)
-        this->negotiate(old_other_kid);
-    else if(old_other_kid->get_charisma() > PEACEFUL_CONDITION_2_CHARISMA_LIMIT && old_other_kid->get_courage() > PEACEFUL_CONDITION_2_COURAGE_LIMIT)
-        this->unite(old_other_kid, real_other_kid);
-
+    check_peaceful_kid_special_behaviors(old_other_kid, real_other_kid);
     check_peaceful_kid_properties_conditions();
-    check_death();
+    check_death_conditions();
 }
 
 void Kid_peaceful::negotiate(Kid* other_kid) {
@@ -39,4 +34,11 @@ void Kid_peaceful::check_peaceful_kid_properties_conditions() {
         charisma = PEACEFUL_KID_CHARISMA_LIMIT;
     if(courage < PEACEFUL_KID_COURAGE_LIMIT)
         courage = PEACEFUL_KID_COURAGE_LIMIT;
+}
+
+void Kid_peaceful::check_peaceful_kid_special_behaviors(Kid *old_other_kid, Kid *real_other_kid) {
+    if(old_other_kid->get_anger() > PEACEFUL_CONDITION_1_ANGER_LIMIT && old_other_kid->get_courage() > PEACEFUL_CONDITION_1_COURAGE_LIMIT)
+        this->negotiate(old_other_kid);
+    else if(old_other_kid->get_charisma() > PEACEFUL_CONDITION_2_CHARISMA_LIMIT && old_other_kid->get_courage() > PEACEFUL_CONDITION_2_COURAGE_LIMIT)
+        this->unite(old_other_kid, real_other_kid);
 }

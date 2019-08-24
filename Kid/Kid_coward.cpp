@@ -6,13 +6,9 @@
 
 void Kid_coward::hit(Kid *old_other_kid, Kid *real_other_kid) {
     this->change_speed_by_momentum(old_other_kid);
-    anger += COWARD_ANGER_INC;
-
-    if(old_other_kid->get_anger() > COWARD_CONDITION_1_ANGER_LIMIT)
-        this->die();
-
+    check_coward_kid_special_behaviors(old_other_kid);
     check_coward_kid_properties_conditions();
-    check_death();
+    check_death_conditions();
 }
 
 void Kid_coward::check_coward_kid_properties_conditions() {
@@ -20,4 +16,10 @@ void Kid_coward::check_coward_kid_properties_conditions() {
         anger = COWARD_KID_ANGER_LIMIT;
     charisma = COWARD_KID_CHARISMA_LIMIT;
     courage = COWARD_KID_COURAGE_LIMIT;
+}
+
+void Kid_coward::check_coward_kid_special_behaviors(Kid *old_other_kid) {
+    anger += COWARD_ANGER_INC;
+    if(old_other_kid->get_anger() > COWARD_CONDITION_1_ANGER_LIMIT)
+        this->die();
 }

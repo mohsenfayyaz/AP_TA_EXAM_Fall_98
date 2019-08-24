@@ -25,9 +25,9 @@ protected:
     int id;
     Kid_type type;
     int anger, charisma, courage;
-    Kid(int _id, Kid_type _type, bool _fragile, double _posx, double _posy, double _vx, double _vy, double _radius, int _anger, int _charisma, int _courage);
     bool dead;
-    void break_to_six(Kid* old_other_kid, Kid* real_other_kid);
+    Kid(int _id, Kid_type _type, bool _fragile, double _posx, double _posy, double _vx, double _vy, double _radius, int _anger, int _charisma, int _courage);
+
 public:
     virtual void hit(Kid *other_kid, Kid *pKid) {};
     int get_id() const { return id; }
@@ -35,17 +35,18 @@ public:
     int get_anger(){ return anger; }
     int get_charisma(){ return charisma; }
     int get_courage(){ return courage; }
-    static bool compare_kid_id(const Kid *lhs, const Kid *rhs){
-        return (lhs->get_id() < rhs->get_id());
-    }
+    void set_id(int _id){ id = _id; }
+
+    static bool compare_kid_id(const Kid *lhs, const Kid *rhs);
     void print_kid_condition();
     bool is_dead(){ return dead; };
-    bool does_break(Kid *old_other_kid);
     void die(){ dead = true; }
+    bool does_break(Kid *old_other_kid);
+
     Kid* copy_yourself(){ return new Kid(*this); };
-    void set_id(int _id){ id = _id; }
-    void check_death();
-    void unite_peaceful_friends(int num_of_friends){ courage += num_of_friends * PEACEFUL_UNION_FACTOR; }
+
+    void check_death_conditions();
+    void unite_peaceful_friends(int num_of_friends);
 };
 
 

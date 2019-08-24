@@ -178,7 +178,7 @@ Kid* Simulator::make_a_broken_kid_copy(Kid* kid, double vx, double vy){
 void Simulator::check_kids_death() {
     for (int i = 0; i < kids->size(); ++i) {
         Kid* kid = (*kids)[i];
-        kid->check_death();
+        kid->check_death_conditions();
     }
 }
 

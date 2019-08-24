@@ -29,7 +29,7 @@ void Kid::print_kid_condition() {
               << ", " << charisma << ", " << courage << std::endl;
 }
 
-void Kid::check_death(){
+void Kid::check_death_conditions(){
     if(anger >= DEATH_ANGER_LIMIT || radius <= DEATH_RADIUS_LIMIT)
         this->die();
 }
@@ -43,4 +43,12 @@ bool Kid::does_break(Kid* old_other_kid) {
         }
     }
     return false;
+}
+
+void Kid::unite_peaceful_friends(int num_of_friends){
+    courage += num_of_friends * PEACEFUL_UNION_FACTOR;
+}
+
+bool Kid::compare_kid_id(const Kid *lhs, const Kid *rhs){
+    return (lhs->get_id() < rhs->get_id());
 }

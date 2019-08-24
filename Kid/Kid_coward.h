@@ -19,6 +19,8 @@
 class Kid_coward : public Kid {
 private:
     void check_coward_kid_properties_conditions();
+    void check_coward_kid_special_behaviors(Kid *old_other_kid);
+
 public:
     Kid_coward(int id, Kid_type type, bool fragile, double posx, double posy, double vx, double vy, double radius,
                int anger, int charisma, int courage) : Kid(id, type, fragile, posx, posy, vx, vy, radius, anger, charisma, courage) {}
