@@ -47,6 +47,9 @@ public:
 
     void check_death_conditions();
     void unite_peaceful_friends(int num_of_friends);
+
+private:
+    double set_precision(double num, int precision);
 };
 
 
