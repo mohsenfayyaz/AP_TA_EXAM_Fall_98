@@ -2,4 +2,33 @@
 1, Angry, false, 4, 5, 0.6, 0.1, 2, 71, 51, 31
 2, Angry, false, 7, 5, -0.5, 0, 1, 71, 51, 31
 1, Coward, false, 4, 5, 0.6, 0.1, 2, 71, 51, 31
+
+1, Peaceful, false, 19, 40, 2, 0, 12, 21, 51, 31
+2, Peaceful, false, 47, 40, -1, 0, 10, 21, 51, 31
 CTRL + D
+
+
+OUTPUT:
+#TimeStepNumber (sequence starting from zero)
+id, type, posX, posY, radius, anger, charisma, courage / id
+#0
+1, Peaceful, 19, 40, 12, 21, 51, 31
+2, Peaceful, 47, 40, 10, 21, 51, 31
+#1
+1, Peaceful, 21, 40, 12, 21, 51, 31
+2, Peaceful, 46, 40, 10, 21, 51, 31
+#2
+1, Peaceful, 23, 40, 12, 21, 51, 31
+2, Peaceful, 45, 40, 10, 21, 51, 31
+#3
+1, Peaceful, 23.5, 40, 12, 21, 53, 33
+2, Peaceful, 45.5, 40, 10, 21, 53, 33
+#4
+1, Peaceful, 24, 40, 12, 21, 55, 35
+2, Peaceful, 46, 40, 10, 21, 55, 35
+#5
+1, Peaceful, 24.5, 40, 12, 21, 57, 37
+2, Peaceful, 46.5, 40, 10, 21, 57, 37
+#6
+1, Peaceful, 25, 40, 12, 21, 59, 39
+2, Peaceful, 47, 40, 10, 21, 59, 39

@@ -20,7 +20,7 @@ Simulator::Simulator(const char *map_address, int _time_step, int _total_time, s
 
 void Simulator::run() {
     for (int i = 0; i < number_of_steps; ++i) {
-        std::cout << std::endl << "-----------------" << std::endl;
+        //std::cout << std::endl << "-----------------" << std::endl;
         std::cout << SHARP_SIGN << current_step << std::endl;
         run_once();
         current_step++;
@@ -29,7 +29,7 @@ void Simulator::run() {
 
 void Simulator::run_once() {
     print_kids_condition();
-    simulation_map->draw_map_with_kids(kids);
+    //simulation_map->draw_map_with_kids(kids);
 
     simulate_walls_collision();
     simulate_kids_collision();
@@ -107,7 +107,6 @@ std::vector<std::vector<Kid*> > Simulator::find_kids_collisions() {
             Kid* other_kid = (*kids)[j];
             if(kid->get_id() != other_kid->get_id()) {
                 if(kid->does_collide_with_other_body(other_kid)){
-                    //std::cout << kid->get_id() << " hit " << old_other_kid->get_id() << std::endl;
                     collisions[i].push_back(other_kid);
                 }
             }

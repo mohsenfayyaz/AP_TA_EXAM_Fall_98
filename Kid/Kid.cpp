@@ -23,10 +23,10 @@ void Kid::print_kid_condition() {
     if(type == Coward)
         type_text = COWARD;
 
-//    std::cout << id << ", " << type_text << ", " << posx << ", " << posy << ", " << radius << ", " << anger
-//        << ", " << charisma << ", " << courage << std::endl;
-    std::cout << id << ", " << type_text << ", posx: " << posx << ", posY: " << posy << ", vx: " << vx << ", vY: " << vy << ", Radius: " << radius << ", " << anger
-              << ", " << charisma << ", " << courage << std::endl;
+    std::cout << id << ", " << type_text << ", " << posx << ", " << posy << ", " << radius << ", " << anger
+        << ", " << charisma << ", " << courage << std::endl;
+//    std::cout << id << ", " << type_text << ", posx: " << posx << ", posY: " << posy << ", vx: " << vx << ", vY: " << vy << ", Radius: " << radius << ", " << anger
+//              << ", " << charisma << ", " << courage << std::endl;
 }
 
 void Kid::check_death_conditions(){

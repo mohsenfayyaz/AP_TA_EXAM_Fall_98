@@ -12,8 +12,10 @@ void Kid_peaceful::hit(Kid *old_other_kid, Kid *real_other_kid) {
 }
 
 void Kid_peaceful::negotiate(Kid* other_kid) {
-    radius += (1-(other_kid->get_courage() + other_kid->get_charisma() )/200) * 0.8 * radius;
-    courage -= PEACEFUL_CONDITION_1_COURAGE_DEC;
+    if(other_kid->get_type() != Coward) {
+        radius += (1 - (other_kid->get_courage() + other_kid->get_charisma()) / 200) * 0.8 * radius;
+        courage -= PEACEFUL_CONDITION_1_COURAGE_DEC;
+    }
 }
 
 void Kid_peaceful::unite(Kid *old_other_kid, Kid *real_other_kid) {
