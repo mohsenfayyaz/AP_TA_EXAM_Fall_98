@@ -64,23 +64,9 @@ void Simulator::print_kids_condition() {
 }
 
 void Simulator::simulate_kids_collision() {
-    std::vector<Kid*> old_kids = copy_kids();
-
-    for (int i = 0; i < kids->size(); ++i) {
-        Kid* kid = (*kids)[i];
-        for (int j = 0; j < kids->size(); ++j){
-            Kid* old_other_kid = old_kids[j];
-            if(kid->get_id() != old_other_kid->get_id()) {
-                if(kid->does_collide_with_other_body(old_other_kid)){
-                    std::cout << kid->get_id() << " hit " << old_other_kid->get_id() << std::endl;
-                    kid->hit(old_other_kid, (*kids)[j]);
-                }
-            }
-        }
-    }
-
-    delete_copy_kids(old_kids);
-
+    std::vector<std::vector<Kid*> > collisions = find_kids_collisions();
+    simulate_kids_hit_each_other(collisions);
+    //simulate_fragility(collisions);
 }
 
 std::vector<Kid*> Simulator::copy_kids(){
@@ -108,4 +94,81 @@ void Simulator::sweep_dead_kids() {
             kids->erase(kids->begin() + i);
         }
     }
+}
+
+std::vector<std::vector<Kid*> > Simulator::find_kids_collisions() {
+    std::vector<std::vector<Kid*> > collisions;
+    for (int i = 0; i < kids->size(); ++i) {
+        std::vector<Kid*> collisions_of_i_th_kid;
+        collisions.push_back(collisions_of_i_th_kid);
+        Kid* kid = (*kids)[i];
+        for (int j = 0; j < kids->size(); ++j){
+            Kid* other_kid = (*kids)[j];
+            if(kid->get_id() != other_kid->get_id()) {
+                if(kid->does_collide_with_other_body(other_kid)){
+                    //std::cout << kid->get_id() << " hit " << old_other_kid->get_id() << std::endl;
+                    collisions[i].push_back(other_kid);
+                }
+            }
+        }
+    }
+    return collisions;
+}
+
+void Simulator::simulate_kids_hit_each_other(std::vector<std::vector<Kid *> > collisions) {
+    std::vector<Kid*> old_kids = copy_kids();
+    for (int i = 0; i < collisions.size(); ++i) {
+        Kid* kid = (*kids)[i];
+        for (int j = 0; j < collisions[i].size(); ++j) {
+            Kid* old_other_kid = find_old_kid( old_kids, collisions[i][j]->get_id() );
+            std::cout << kid->get_id() << " hit " << old_other_kid->get_id() << std::endl;
+            kid->hit(old_other_kid, collisions[i][j]);
+        }
+    }
+    delete_copy_kids(old_kids);
+}
+
+Kid* Simulator::find_old_kid(std::vector<Kid*> &old_kids, int id){
+    for (int i = 0; i < old_kids.size(); ++i) {
+        if(old_kids[i]->get_id() == id)
+            return old_kids[i];
+    }
+}
+
+void Simulator::simulate_fragility(std::vector<std::vector<Kid *> > collisions) {
+    std::vector<Kid*> old_kids = copy_kids();
+    for (int i = 0; i < collisions.size(); ++i) {
+        Kid* kid = (*kids)[i];
+        for (int j = 0; j < collisions[i].size(); ++j){
+            Kid* old_other_kid = find_old_kid( old_kids, collisions[i][j]->get_id() );
+            if( kid->does_break(old_other_kid))
+                break_to_six(kid);
+        }
+    }
+    delete_copy_kids(old_kids);
+}
+
+void Simulator::break_to_six(Kid *kid) {
+    double old_v = sqrt(pow(kid->get_vx(), 2) + pow(kid->get_vy(), 2));
+    double new_v = old_v * BREAK_SPEED_RATIO;
+    double vx = new_v * cos(BREAKING_DEGREE * PI/180);
+    double vy = new_v * sin(BREAKING_DEGREE * PI/180);
+    kids->push_back( make_a_broken_kid_copy(kid, +new_v, 0) );
+    kids->push_back( make_a_broken_kid_copy(kid, -new_v, 0) );
+    kids->push_back( make_a_broken_kid_copy(kid, vx, vy) );
+    kids->push_back( make_a_broken_kid_copy(kid, -vx, vy) );
+    kids->push_back( make_a_broken_kid_copy(kid, -vx, -vy) );
+    kids->push_back( make_a_broken_kid_copy(kid, vx, -vy) );
+    kid->die();
+}
+
+Kid* Simulator::make_a_broken_kid_copy(Kid* kid, double vx, double vy){
+    double new_radius = kid->get_radius() * BREAK_RADIUS_RATIO;
+    Kid* new_kid = kid->copy_yourself();
+    new_kid->set_id(++last_id);
+    new_kid->set_radius(new_radius);
+    new_kid->set_vx(vx);
+    new_kid->set_vy(vy);
+
+    return new_kid;
 }

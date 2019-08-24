@@ -29,16 +29,22 @@ void Kid::print_kid_condition() {
               << ", " << charisma << ", " << courage << std::endl;
 }
 
-void Kid::make_a_copy() {
-    try {
-        delete(old_kid_copy);
-    }catch (_exception& e){}
-
-    old_kid_copy = new Kid(*this);
-
-}
-
 void Kid::check_death(){
     if(anger >= DEATH_ANGER_LIMIT || radius <= DEATH_RADIUS_LIMIT)
         this->die();
+}
+
+void Kid::check_kid_global_conditions(Kid* other_kid) {
+    this->check_death();
+}
+
+bool Kid::does_break(Kid* old_other_kid) {
+    if(radius + old_other_kid->get_radius() > BREAKING_RADIUS_LIMIT){
+        if(radius < BREAKING_DEATH_RADIUS_LIMIT){
+            return true;
+        }else{
+            this->die();
+            return false;
+        }
+    }
 }

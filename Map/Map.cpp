@@ -23,13 +23,13 @@ Map::Map(const char *file_address) {
 Collision_type Map::does_collide_to_walls(double posx, double posy, double radius) {
     Collision_type collision_type = no_collison;
     radius += COLLISION_MARGIN;
-    if(is_point_in_walls(posx + radius, posy + radius) )
+    if(is_point_in_walls(posx + radius/sqrt(2), posy + radius/sqrt(2)) )
         collision_type = right_top;
-    if(is_point_in_walls(posx + radius, posy - radius))
+    if(is_point_in_walls(posx + radius/sqrt(2), posy - radius/sqrt(2)))
         collision_type = right_bottom;
-    if(is_point_in_walls(posx - radius, posy + radius))
+    if(is_point_in_walls(posx - radius/sqrt(2), posy + radius/sqrt(2)))
         collision_type = left_top;
-    if(is_point_in_walls(posx - radius, posy - radius))
+    if(is_point_in_walls(posx - radius/sqrt(2), posy - radius/sqrt(2)))
         collision_type = left_bottom;
 
     if(is_point_in_walls(posx + radius, posy))

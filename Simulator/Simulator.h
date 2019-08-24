@@ -11,6 +11,11 @@
 
 #define SHARP_SIGN '#'
 
+#define BREAK_RADIUS_RATIO 1/3
+#define BREAK_SPEED_RATIO 1/6
+#define BREAKING_DEGREE 60
+#define PI 3.14159265
+
 class Simulator {
 private:
     Map* simulation_map;
@@ -28,6 +33,13 @@ private:
     std::vector<Kid *> copy_kids();
     void delete_copy_kids(std::vector<Kid *> &copy_kids);
     void sweep_dead_kids();
+    std::vector<std::vector<Kid*> > find_kids_collisions();
+    void simulate_kids_hit_each_other(std::vector<std::vector<Kid *> > collisions);
+    void simulate_fragility(std::vector<std::vector<Kid *> > collisions);
+    void break_to_six(Kid *kid);
+    Kid *make_a_broken_kid_copy(Kid *kid, double vx, double vy);
+    Kid *find_old_kid(std::vector<Kid *> &old_kids, int id);
+
 public:
     Simulator(const char* map_address, int time_step, int total_time, std::vector<Kid*>* kids);
     void run();

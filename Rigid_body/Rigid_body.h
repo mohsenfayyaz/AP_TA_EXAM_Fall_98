@@ -29,6 +29,7 @@ public:
 
     void set_vx(double _vx){ vx = _vx; }
     void set_vy(double _vy){ vy = _vy; }
+    void set_radius(double _radius){ radius = _radius; }
 
     void collide_with_wall(Collision_type kid_collision_type);
     bool does_collide_with_other_body(Rigid_body* other_body);

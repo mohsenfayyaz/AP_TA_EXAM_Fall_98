@@ -15,6 +15,9 @@
 #define DEATH_ANGER_LIMIT 100
 #define DEATH_RADIUS_LIMIT 0
 
+#define BREAKING_RADIUS_LIMIT 20
+#define BREAKING_DEATH_RADIUS_LIMIT 6
+
 class Kid : public Rigid_body {
 protected:
     int id;
@@ -22,9 +25,9 @@ protected:
     int anger, charisma, courage;
     Kid(int _id, Kid_type _type, bool _fragile, double _posx, double _posy, double _vx, double _vy, double _radius, int _anger, int _charisma, int _courage);
     bool dead;
-    Kid* old_kid_copy;
-    void die(){ dead = true; }
     void check_death();
+    void check_kid_global_conditions(Kid* other_kid);
+    void break_to_six(Kid* old_other_kid, Kid* real_other_kid);
 public:
     virtual void hit(Kid *other_kid, Kid *pKid) {};
     int get_id() const { return id; }
@@ -36,8 +39,11 @@ public:
         return (lhs->get_id() < rhs->get_id());
     }
     void print_kid_condition();
-    void make_a_copy();
     bool is_dead(){ return dead; };
+    bool does_break(Kid *old_other_kid);
+    void die(){ dead = true; }
+    Kid* copy_yourself(){ return new Kid(*this); };
+    void set_id(int _id){ id = _id; }
 };
 
 
