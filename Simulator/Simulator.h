@@ -15,6 +15,7 @@
 #define BREAK_SPEED_RATIO 1/6
 #define BREAKING_DEGREE 60
 #define PI 3.14159265
+#define PEACEFUL_UNION_COUNT_LIMIT 2
 
 class Simulator {
 private:
@@ -39,11 +40,14 @@ private:
     void break_to_six(Kid *kid);
     Kid *make_a_broken_kid_copy(Kid *kid, double vx, double vy);
     Kid *find_old_kid(std::vector<Kid *> &old_kids, int id);
+    void check_kids_death();
+    void simulate_peaceful_kids_union(std::vector<std::vector<Kid *> > collisions);
 
 public:
     Simulator(const char* map_address, int time_step, int total_time, std::vector<Kid*>* kids);
     void run();
     void run_once();
+
 };
 
 

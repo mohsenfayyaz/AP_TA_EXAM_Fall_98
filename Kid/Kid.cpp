@@ -34,17 +34,13 @@ void Kid::check_death(){
         this->die();
 }
 
-void Kid::check_kid_global_conditions(Kid* other_kid) {
-    this->check_death();
-}
-
 bool Kid::does_break(Kid* old_other_kid) {
     if(radius + old_other_kid->get_radius() > BREAKING_RADIUS_LIMIT){
         if(radius < BREAKING_DEATH_RADIUS_LIMIT){
             return true;
         }else{
             this->die();
-            return false;
         }
     }
+    return false;
 }

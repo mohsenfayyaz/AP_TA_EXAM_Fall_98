@@ -5,7 +5,6 @@
 #include <algorithm>
 #include "Simulator.h"
 #include "../Kid/Kid_angry.h"
-#include <typeinfo>
 
 Simulator::Simulator(const char *map_address, int _time_step, int _total_time, std::vector<Kid*>* _kids) {
     simulation_map = new Map(map_address);
@@ -34,6 +33,7 @@ void Simulator::run_once() {
 
     simulate_walls_collision();
     simulate_kids_collision();
+    check_kids_death();
     sweep_dead_kids();
     simulate_move_kids();
 }
@@ -66,7 +66,8 @@ void Simulator::print_kids_condition() {
 void Simulator::simulate_kids_collision() {
     std::vector<std::vector<Kid*> > collisions = find_kids_collisions();
     simulate_kids_hit_each_other(collisions);
-    //simulate_fragility(collisions);
+    simulate_fragility(collisions);
+    simulate_peaceful_kids_union(collisions);
 }
 
 std::vector<Kid*> Simulator::copy_kids(){
@@ -133,6 +134,7 @@ Kid* Simulator::find_old_kid(std::vector<Kid*> &old_kids, int id){
         if(old_kids[i]->get_id() == id)
             return old_kids[i];
     }
+    return NULL;
 }
 
 void Simulator::simulate_fragility(std::vector<std::vector<Kid *> > collisions) {
@@ -171,4 +173,27 @@ Kid* Simulator::make_a_broken_kid_copy(Kid* kid, double vx, double vy){
     new_kid->set_vy(vy);
 
     return new_kid;
+}
+
+void Simulator::check_kids_death() {
+    for (int i = 0; i < kids->size(); ++i) {
+        Kid* kid = (*kids)[i];
+        kid->check_death();
+    }
+}
+
+void Simulator::simulate_peaceful_kids_union(std::vector<std::vector<Kid *> > collisions) {
+    for (int i = 0; i < collisions.size(); ++i) {
+        Kid* kid = (*kids)[i];
+        int peaceful_collisions_counter = 0;
+        if(kid->get_type() == Peaceful) {
+            for (int j = 0; j < collisions[i].size(); ++j) {
+                Kid *other_kid = collisions[i][j];
+                if (kid->get_type() == Peaceful)
+                    peaceful_collisions_counter++;
+            }
+            if(peaceful_collisions_counter > PEACEFUL_UNION_COUNT_LIMIT)
+                kid->unite_peaceful_friends(peaceful_collisions_counter);
+        }
+    }
 }

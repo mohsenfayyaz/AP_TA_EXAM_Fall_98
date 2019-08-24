@@ -18,6 +18,8 @@
 #define BREAKING_RADIUS_LIMIT 20
 #define BREAKING_DEATH_RADIUS_LIMIT 6
 
+#define PEACEFUL_UNION_FACTOR 5
+
 class Kid : public Rigid_body {
 protected:
     int id;
@@ -25,8 +27,6 @@ protected:
     int anger, charisma, courage;
     Kid(int _id, Kid_type _type, bool _fragile, double _posx, double _posy, double _vx, double _vy, double _radius, int _anger, int _charisma, int _courage);
     bool dead;
-    void check_death();
-    void check_kid_global_conditions(Kid* other_kid);
     void break_to_six(Kid* old_other_kid, Kid* real_other_kid);
 public:
     virtual void hit(Kid *other_kid, Kid *pKid) {};
@@ -44,6 +44,8 @@ public:
     void die(){ dead = true; }
     Kid* copy_yourself(){ return new Kid(*this); };
     void set_id(int _id){ id = _id; }
+    void check_death();
+    void unite_peaceful_friends(int num_of_friends){ courage += num_of_friends * PEACEFUL_UNION_FACTOR; }
 };
 
 
