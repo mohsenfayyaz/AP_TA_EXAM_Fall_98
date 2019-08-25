@@ -24,8 +24,6 @@ void Kid_peaceful::unite(Kid *old_other_kid, Kid *real_other_kid) {
         vy = (vy + old_other_kid->get_vy()) / 2;
         real_other_kid->set_vx(vx);
         real_other_kid->set_vy(vy);
-
-        std::cout << vx << vy << std::endl;
     }
 
     charisma += PEACEFUL_CONDITION_2_CHARISMA_COURAGE_INC;
