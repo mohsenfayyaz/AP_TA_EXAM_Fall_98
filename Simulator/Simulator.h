@@ -8,6 +8,8 @@
 #include "vector"
 #include "../Kid/Kid.h"
 #include "../Map/Map.h"
+#include "../Kid/Kid_angry.h"
+#include <algorithm>
 
 #define SHARP_SIGN '#'
 #define DEATH_COUT ", KIA"

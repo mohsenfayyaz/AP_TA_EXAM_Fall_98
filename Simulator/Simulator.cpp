@@ -2,9 +2,7 @@
 // Created by Mohsen on 8/20/2019.
 //
 
-#include <algorithm>
 #include "Simulator.h"
-#include "../Kid/Kid_angry.h"
 
 Simulator::Simulator(const char *map_address, int _time_step, int _total_time, std::vector<Kid*>* _kids) {
     simulation_map = new Map(map_address);
